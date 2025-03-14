@@ -5,10 +5,10 @@
 
 
 from ChatHook import ChatHook
-discord_channel =  "https://discord.com/channels/828062267609579521/828062267609579524"
+discord_channel =  "https://discord.com/channels/828062267609579521/1350129071555870722"
 
-def my_callback(data):
-    print(data['chat_text'])
+def my_callback(data):    
+    print(f"{data['local_time']}: {data['user_name']} {data['chat_text']}")
     pass
 
 def main():   

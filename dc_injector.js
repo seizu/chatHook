@@ -19,12 +19,12 @@
         }
 
         var ele = document.querySelectorAll('li[id^=chat-messages-]');
-        var last = ele[ele.length - 1];
-        
-        var newMsgId = last.querySelector('div[id^=message-content-]:not([class*="isSending-"]').id
-        var userName = last.querySelector('span[class^=username-]').innerText
-        
+        var last = ele[ele.length - 1];        
+        var newMsgId = last.querySelector('div[id^=message-content-]:not([class*="isSending"]').id
+
         if (last.innerText !== "" && lastId !== newMsgId) {
+            var userName = last.querySelector('span[class^=username_]').innerText
+            var msgText = last.querySelector('div[id^=message-content-]:not([class*="isSending"]').innerText
             console.log(last.innerHTML);
             lastId = newMsgId;
             var ts = parseInt(newMsgId.substr(16));
@@ -32,7 +32,7 @@
             var utcTime = (new Date(unixTime)).toISOString();
             var utcOffset = (new Date()).getTimezoneOffset()*60*1000;                
             var localTime = (new Date(unixTime-utcOffset)).toISOString().replace("Z","");                
-            var html = `<div id="chat-stack-id-${msgId}" data-msgId="${newMsgId}" data-utcTime="${utcTime}" data-localTime="${localTime}" data-unixTime="${unixTime}" data-userName="${userName}">${last.innerText}</div>`;
+            var html = `<div id="chat-stack-id-${msgId}" data-msgId="${newMsgId}" data-utcTime="${utcTime}" data-localTime="${localTime}" data-unixTime="${unixTime}" data-userName="${userName}">${msgText}</div>`;
             //console.log(html);
             var div = htmlToElement(html);
             var parentNode = document.querySelector('body');
@@ -52,7 +52,7 @@
         }
         
         if(observer == null) {        		
-            var node = document.querySelector('div[class^=messagesWrapper-]');        	
+            var node = document.querySelector('div[class^=messagesWrapper]');        	
             if (node == null) {
                 console.log("Nothing Found")
                 return;
